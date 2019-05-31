@@ -1,6 +1,7 @@
 const express = require('express');
 
 const projectRouter = require('./ProjectRouter.js');
+const actionRouter = require('./ActionRouter.js');
 
 const server = express();
 
@@ -12,6 +13,7 @@ server.get('/', (req, res) => {
 })
 
 server.use('/api/projects', projectRouter);
+server.use('api/actions', actionRouter);
 
 function logger(req, res, next){
     const time = new Date().toISOString();

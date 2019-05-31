@@ -12,6 +12,18 @@ router.get('/', (req, res) => {
     })
 })
 
+router.get('/:id', (req, res) => {
+    const id = req.params.id;
+
+    Projects.get(id)
+    .then( project => {
+        res.status(200).json(project)
+    })
+    .catch(error => {
+        res.status(500).json({ error: "There was an error trying to retrieve the projects from the database." })
+    })
+})
+
 router.post('/', (req, res) => {
     const { name, description } = req.body;
     if(!name || !description){
