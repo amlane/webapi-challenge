@@ -33,4 +33,26 @@ router.get('/:id', (req, res) => {
     })
 })
 
+router.put('/:id', (req, res) => {
+    const id = req.params.id;
+    const changes = req.body;
+    changes.project_id = id;
+
+    if(!changes.description || !changes.notes){
+        res.status(400).json({ message: "Actions require a description and note" })
+    } 
+
+    Actions.update(id, changes)
+    .then( updatedAction => {
+        if(updatedAction){
+            res.status(200).json(updatedAction)
+        } else {
+            res.status(404).json({ message: "This project doesn't exist in the database." })
+        }
+    })
+    .catch(error => {
+        res.status(500).json({ error: "error occurred while updating actions" })
+    })
+})
+
 module.exports = router;
