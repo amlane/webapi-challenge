@@ -1,4 +1,6 @@
 import React from 'react';
+import { Route, Link } from 'react-router-dom';
+import Projects from './components/Projects';
 
 import axios from 'axios';
 import './App.css';
@@ -23,13 +25,22 @@ class App extends React.Component{
   render(){
     return (
       <div className="App">
+        <nav>
+          <Link to="/">Home</Link>{' '}
+          <Link to="/projects">Projects</Link>
+        </nav>
         <h1>Herrow World</h1>
-        {this.state.projects.map( project => {
-          return (
-            <p>{project.name}</p>
-          )
-        })}
+
+        <Route 
+        path='/projects' 
+        render={props =>
+        <Projects
+        {...props}
+        projects={this.state.projects}
+        /> }
+        />
       </div>
+
     );
   }
 }
