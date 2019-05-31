@@ -1,4 +1,6 @@
 const express = require('express');
+const helmet = require('helmet');
+const cors = require('cors');
 
 const projectRouter = require('./ProjectRouter.js');
 const actionRouter = require('./ActionRouter.js');
@@ -6,7 +8,9 @@ const actionRouter = require('./ActionRouter.js');
 const server = express();
 
 server.use(express.json());
+server.use(helmet());
 server.use(logger);
+server.use(cors({ origin: '*' }))
 
 server.get('/', (req, res) => {
     res.send("Let's build an API!")
@@ -14,6 +18,7 @@ server.get('/', (req, res) => {
 
 server.use('/api/projects', projectRouter);
 server.use('/api/actions', actionRouter);
+
 
 function logger(req, res, next){
     const time = new Date().toISOString();
