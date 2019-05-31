@@ -1,6 +1,7 @@
 const router = require('express').Router();
 
 const Projects = require('../data/helpers/projectModel');
+const Actions = require('../data/helpers/actionModel.js');
 
 router.get('/', (req, res) => {
     Projects.get()
@@ -78,6 +79,24 @@ router.get('/:id', (req, res) => {
         res.status(500).json({ error: "There was an error trying to retrieve the projects from the database." })
     })
 })
+
+
+router.get('/:id/actions', (req, res) => {
+    const id = req.params.id;
+    // const action = req.body;
+    // action.project_id = id;
+
+    Projects.getProjectActions(id)
+    .then( action => {
+        if(action)
+        res.status(201).json(action)
+    })
+    .catch(error => {
+        res.status(500).json({ message: "error" })
+    })
+})
+
+router.post('/:id/actions')
 
 
 module.exports = router;
