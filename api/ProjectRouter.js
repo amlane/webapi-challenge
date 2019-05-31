@@ -73,7 +73,7 @@ router.get('/:id', (req, res) => {
 
     Projects.get(id)
     .then( project => {
-        res.status(200).json(project)
+            res.status(200).json(project)
     })
     .catch(error => {
         res.status(500).json({ error: "There was an error trying to retrieve the projects from the database." })
@@ -87,7 +87,7 @@ router.get('/:id/actions', (req, res) => {
     Projects.getProjectActions(id)
     .then( action => {
         if(action && action.length) {
-            res.status(201).json(action)
+            res.status(200).json(action)
         } else {
             res.status(404).json({ message: "No actions found." })
         }

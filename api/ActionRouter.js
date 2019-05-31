@@ -22,10 +22,10 @@ router.get('/:id', (req, res) => {
 
     Actions.get(id)
     .then( actions => {
-        if(actions){
+        if(id){
             res.status(200).json(actions)
         } else {
-            res.status(404).json({ message: "Action not found." })
+            res.status(404).json({ message: "action not found"})
         }
     })
     .catch(err => {
