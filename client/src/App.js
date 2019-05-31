@@ -42,7 +42,15 @@ class App extends React.Component{
         /> }
         />
 
-        <Route path='/projects/:id' component={Project} />
+        <Route 
+        path='/projects/:id' 
+        render={props => 
+        <Project 
+        {...props}
+        />
+        }
+        />
+
       </div>
 
     );
