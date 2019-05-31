@@ -104,15 +104,14 @@ router.post('/:id/actions', (req, res) => {
 
     if(!action.description || !action.notes){
         res.status(400).json({ message: "Actions require a description and note" })
-    } else {
-        Actions.insert(action)
-        .then( action => {
-            res.status(201).json(action)
-        } )
-        .catch(error => {
-            res.status(500).json({ error: "Error trying to post to actions." })
-        })
-    }
+    } 
+    Actions.insert(action)
+    .then( action => {
+        res.status(201).json(action)
+    } )
+    .catch(error => {
+        res.status(500).json({ error: "Error trying to post to actions." })
+    })
 })
 
 
