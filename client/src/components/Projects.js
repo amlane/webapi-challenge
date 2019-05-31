@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class Projects extends React.Component{
     constructor(props){
@@ -12,7 +13,7 @@ class Projects extends React.Component{
             <div>
                 {this.props.projects.map( project => {
                     return (
-                        <p>{project.name}</p>
+                        <Link to={`/projects/${project.id}`}><p>{project.name}</p></Link>
                     ) 
                 })}
             </div>

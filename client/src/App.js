@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
 import Projects from './components/Projects';
+import Project from './components/Project';
 
 import axios from 'axios';
 import './App.css';
@@ -32,6 +33,7 @@ class App extends React.Component{
         <h1>Herrow World</h1>
 
         <Route 
+        exact
         path='/projects' 
         render={props =>
         <Projects
@@ -39,6 +41,8 @@ class App extends React.Component{
         projects={this.state.projects}
         /> }
         />
+
+        <Route path='/projects/:id' component={Project} />
       </div>
 
     );
