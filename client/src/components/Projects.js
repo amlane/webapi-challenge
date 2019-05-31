@@ -13,7 +13,7 @@ class Projects extends React.Component{
             <div>
                 {this.props.projects.map( project => {
                     return (
-                        <Link to={`/projects/${project.id}`} key={project.id}>
+                        <Link to={`/projects/${project.id}/${project.name}`} key={project.id}>
                             <p>{project.name}</p>
                         </Link>
                     ) 

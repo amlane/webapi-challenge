@@ -43,7 +43,7 @@ class App extends React.Component{
         />
 
         <Route 
-        path='/projects/:id' 
+        path='/projects/:id/:name' 
         render={props => 
         <Project 
         {...props}

@@ -4,6 +4,7 @@ import axios from 'axios';
 class Project extends React.Component{
     state = {
         id: this.props.match.params.id,
+        project: this.props.match.params.name,
         actions: []
     }
 
@@ -22,9 +23,10 @@ class Project extends React.Component{
     }
 
     render(){
-        console.log("state", this.state.actions)
+        console.log("state", this.state.project)
         return (
             <div>
+                <h2>{this.state.project}</h2>
                 {this.state.actions.map( action => {
                     return (
                         <p>{action.description}</p>
