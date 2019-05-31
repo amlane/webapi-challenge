@@ -13,6 +13,9 @@ class App extends React.Component{
         .get(`http://localhost:7000/api/projects`)
         .then(res => {
           console.log(res)
+          this.setState({ 
+            projects: res.data
+          })
         })
         .catch()      
       }
@@ -21,6 +24,11 @@ class App extends React.Component{
     return (
       <div className="App">
         <h1>Herrow World</h1>
+        {this.state.projects.map( project => {
+          return (
+            <p>{project.name}</p>
+          )
+        })}
       </div>
     );
   }
