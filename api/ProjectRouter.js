@@ -28,4 +28,27 @@ router.post('/', (req, res) => {
     }
 })
 
+router.put('/:id', (req, res) => {
+    const id = req.params.id;
+    const changes = req.body;
+    const { name, description } = req.body;
+
+    if(!name || !description){
+        res.status(400).json({ message: "Project name and description is required." })
+    } else {
+    
+    Projects.update(id, changes)
+    .then( updatedProject => {
+        if(updatedProject){
+            res.status(200).json(updatedProject)
+        } else {
+            res.status(404).json({ message: "That project doesn't exist in the database." })
+        }
+    })
+    .catch( error => {
+        res.status(500).json({ error: "There was an error saving your changes to the database." })
+    })
+}
+})
+
 module.exports = router;
