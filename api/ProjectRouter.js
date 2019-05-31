@@ -101,17 +101,20 @@ router.post('/:id/actions', (req, res) => {
     let action = req.body;
     const id = req.params.id;
     action.project_id = id;
+    let description = req.body.description;
+    let notes = req.body.notes;
 
-    if(!action.description || !action.notes){
+    if(!description || !notes){
         res.status(400).json({ message: "Actions require a description and note" })
-    } 
-    Actions.insert(action)
+    } else {
+        Actions.insert(action)
     .then( action => {
         res.status(201).json(action)
     } )
     .catch(error => {
         res.status(500).json({ error: "Error trying to post to actions." })
     })
+    }
 })
 
 
