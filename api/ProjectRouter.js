@@ -37,18 +37,36 @@ router.put('/:id', (req, res) => {
         res.status(400).json({ message: "Project name and description is required." })
     } else {
     
-    Projects.update(id, changes)
-    .then( updatedProject => {
-        if(updatedProject){
-            res.status(200).json(updatedProject)
+        Projects.update(id, changes)
+        .then( updatedProject => {
+            if(updatedProject){
+                res.status(200).json(updatedProject)
+            } else {
+                res.status(404).json({ message: "This project doesn't exist in the database." })
+            }
+        })
+        .catch( error => {
+            res.status(500).json({ error: "There was an error saving your changes to the database." })
+        })
+        }
+    })
+
+router.delete('/:id', (req, res) => {
+    const id = req.params.id;
+
+    Projects.remove(id)
+    .then( deletedProject => {
+        if(deletedProject){
+            res.status(204).end();
         } else {
-            res.status(404).json({ message: "That project doesn't exist in the database." })
+            res.status(404).json({ message: "This project doesn't exist in the database." })
         }
     })
     .catch( error => {
-        res.status(500).json({ error: "There was an error saving your changes to the database." })
+        res.status(500).json({ error: "There was an error trying to delete your project." })
     })
-}
 })
+
+
 
 module.exports = router;
