@@ -47,7 +47,7 @@ router.put('/:id', (req, res) => {
         if(updatedAction){
             res.status(200).json(updatedAction)
         } else {
-            res.status(404).json({ message: "This project doesn't exist in the database." })
+            res.status(404).json({ message: "This action doesn't exist in the database." })
         }
     })
     .catch(error => {
@@ -60,8 +60,11 @@ router.delete('/:id', (req, res) => {
 
     Actions.remove(id)
     .then(deletedAction => {
+        if(deletedAction){
             res.status(204).end();
-
+        } else {
+            res.status(404).json({ message: "Action doesn't exist in database." })
+        }
     })
     .catch(error => {
         res.status(500).json({ error: "error occurred while deleting action from database." })
