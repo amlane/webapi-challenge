@@ -26,13 +26,23 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
 
+        Express is a framework that adds additional functionality to your Node.js server. Some of this functionality includes middleware and routing. Express is unopinionated which allows for more flexibility but also requires more decisions to be made using it out of the box versus other back end frameworks.
+
 - [ ] Describe Middleware?
+
+        Middleware is an array of functions that get executed in the order they are introduced into the server code. In regards to node/express there are a few types of middleware. Built in, third party and custom.
 
 - [ ] Describe a Resource?
 
+             In regards to back end, a resource is the data being managed/stored in the API. 
+
 - [ ] What can the API return to help clients know if a request was successful?
 
+            A status code between 200-299.
+
 - [ ] How can we partition our application into sub-applications?
+
+            You can use routing to partition your application in several different endpoint routes pulling from selected databases. 
 
 ## Project Setup
 
