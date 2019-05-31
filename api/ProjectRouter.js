@@ -93,6 +93,20 @@ router.get('/actions/:id', (req, res) => {
     })
 })
 
+router.post('/actions/:id', (req, res) => {
+    const action = req.body;
+    const id = req.params.id;
+    action.project_id = id;
+
+    Actions.insert(action)
+    .then( action => {
+        res.status(201).json(action);
+    })
+    .catch(error => {
+        res.status(500).json({ error: "There was an error trying to add new action to the database." })
+    })
+})
+
 
 
 module.exports = router;
