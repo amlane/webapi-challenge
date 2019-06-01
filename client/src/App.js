@@ -15,7 +15,7 @@ class App extends React.Component{
         axios
         .get(`http://localhost:7000/api/projects`)
         .then(res => {
-          console.log(res)
+          // console.log(res)
           this.setState({ 
             projects: res.data
           })
@@ -26,11 +26,11 @@ class App extends React.Component{
   render(){
     return (
       <div className="App">
-        <nav>
+        <nav className="nav-bar">
           <Link to="/">Home</Link>{' '}
           <Link to="/projects">Projects</Link>
         </nav>
-        <h1>Herrow World</h1>
+        <h1>Projects</h1>
 
         <Route 
         exact
